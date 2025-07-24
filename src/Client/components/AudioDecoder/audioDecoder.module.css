@@ -1,0 +1,345 @@
+/* Audio Decoder Container */
+.audioDecoderContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.videoCallContainer {
+  width: 100%;
+  max-width: 200px;
+}
+
+/* Original Microphone Styles */
+.microphone {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  background: linear-gradient(145deg, #e74c3c, #c0392b);
+  border: 3px solid #fff;
+  box-shadow: 
+    0 8px 16px rgba(0, 0, 0, 0.2),
+    inset 0 2px 4px rgba(255, 255, 255, 0.2);
+  position: relative;
+  overflow: hidden;
+}
+
+.microphone:hover {
+  transform: scale(1.05);
+  box-shadow: 
+    0 12px 24px rgba(0, 0, 0, 0.3),
+    inset 0 2px 4px rgba(255, 255, 255, 0.3);
+}
+
+.microphone:active {
+  transform: scale(0.95);
+}
+
+/* Video Call Microphone Styles */
+.videoCallMicrophone {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  background: linear-gradient(145deg, #3498db, #2980b9);
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 
+    0 4px 12px rgba(0, 0, 0, 0.3),
+    inset 0 1px 2px rgba(255, 255, 255, 0.2);
+  position: relative;
+  overflow: visible;
+}
+
+.videoCallMicrophone:hover:not(.disabled) {
+  transform: scale(1.1);
+  background: linear-gradient(145deg, #2980b9, #1f618d);
+  box-shadow: 
+    0 6px 16px rgba(0, 0, 0, 0.4),
+    0 0 20px rgba(52, 152, 219, 0.3),
+    inset 0 1px 2px rgba(255, 255, 255, 0.3);
+}
+
+.videoCallMicrophone:active:not(.disabled) {
+  transform: scale(1.0);
+}
+
+/* Microphone Icon */
+.micIcon {
+  font-size: 18px;
+  color: white;
+  filter: drop-shadow(1px 1px 2px rgba(0, 0, 0, 0.3));
+}
+
+.videoCallMicrophone .micIcon {
+  font-size: 16px;
+}
+
+/* Microphone Status (Video Call Mode) */
+.micStatus {
+  position: absolute;
+  bottom: -25px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  min-width: 80px;
+}
+
+.statusText {
+  color: #ecf0f1;
+  font-size: 10px;
+  font-weight: 500;
+  text-align: center;
+  background: rgba(0, 0, 0, 0.6);
+  padding: 2px 6px;
+  border-radius: 8px;
+  white-space: nowrap;
+  backdrop-filter: blur(4px);
+}
+
+/* Listening Indicator */
+.listeningIndicator {
+  display: flex;
+  gap: 2px;
+  align-items: end;
+}
+
+.listeningIndicator span {
+  width: 2px;
+  background: #27ae60;
+  border-radius: 1px;
+  animation: micWave 1s ease-in-out infinite;
+}
+
+.listeningIndicator span:nth-child(1) { 
+  height: 4px; 
+  animation-delay: 0s; 
+}
+.listeningIndicator span:nth-child(2) { 
+  height: 6px; 
+  animation-delay: 0.1s; 
+}
+.listeningIndicator span:nth-child(3) { 
+  height: 4px; 
+  animation-delay: 0.2s; 
+}
+
+/* Live Transcript */
+.liveTranscript {
+  background: rgba(0, 0, 0, 0.7);
+  color: #ecf0f1;
+  padding: 8px 12px;
+  border-radius: 8px;
+  border: 1px solid rgba(52, 152, 219, 0.3);
+  max-width: 200px;
+  backdrop-filter: blur(8px);
+  margin-top: 10px;
+}
+
+.liveTranscript p {
+  margin: 0;
+  font-size: 11px;
+  line-height: 1.4;
+  text-align: center;
+  opacity: 0.9;
+}
+
+/* State-specific styles */
+.listening {
+  background: linear-gradient(145deg, #27ae60, #229954) !important;
+  animation: microphonePulse 1.5s ease-in-out infinite;
+  border-color: rgba(255, 255, 255, 0.6);
+}
+
+.listening::before {
+  content: '';
+  position: absolute;
+  top: -4px;
+  left: -4px;
+  right: -4px;
+  bottom: -4px;
+  border-radius: 50%;
+  border: 2px solid #27ae60;
+  animation: ripple 1.5s ease-out infinite;
+}
+
+.transitioning {
+  background: linear-gradient(145deg, #f39c12, #e67e22) !important;
+  animation: processingPulse 0.8s ease-in-out infinite;
+}
+
+.disabled {
+  background: linear-gradient(145deg, #7f8c8d, #6c7b7d) !important;
+  cursor: not-allowed !important;
+  opacity: 0.6;
+}
+
+.disabled:hover {
+  transform: none !important;
+  box-shadow: 
+    0 4px 12px rgba(0, 0, 0, 0.3),
+    inset 0 1px 2px rgba(255, 255, 255, 0.2) !important;
+}
+
+/* Error Container */
+.errorContainer {
+  padding: 10px 15px;
+  background: rgba(231, 76, 60, 0.1);
+  border: 1px solid #e74c3c;
+  border-radius: 8px;
+  color: #e74c3c;
+  font-size: 12px;
+  text-align: center;
+}
+
+.videoCallError {
+  background: rgba(231, 76, 60, 0.2);
+  backdrop-filter: blur(4px);
+  color: #ecf0f1;
+}
+
+/* Animations */
+@keyframes microphonePulse {
+  0%, 100% { 
+    transform: scale(1);
+    box-shadow: 
+      0 8px 16px rgba(0, 0, 0, 0.2),
+      inset 0 2px 4px rgba(255, 255, 255, 0.2);
+  }
+  50% { 
+    transform: scale(1.05);
+    box-shadow: 
+      0 12px 24px rgba(0, 0, 0, 0.3),
+      0 0 20px rgba(39, 174, 96, 0.4),
+      inset 0 2px 4px rgba(255, 255, 255, 0.3);
+  }
+}
+
+@keyframes processingPulse {
+  0%, 100% { 
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% { 
+    opacity: 0.8;
+    transform: scale(1.02);
+  }
+}
+
+@keyframes ripple {
+  0% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(1.4);
+  }
+}
+
+@keyframes micWave {
+  0%, 100% { 
+    transform: scaleY(1);
+    opacity: 0.7;
+  }
+  50% { 
+    transform: scaleY(1.8);
+    opacity: 1;
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .microphone {
+    width: 50px;
+    height: 50px;
+  }
+  
+  .micIcon {
+    font-size: 16px;
+  }
+  
+  .videoCallMicrophone {
+    width: 45px;
+    height: 45px;
+  }
+  
+  .videoCallMicrophone .micIcon {
+    font-size: 14px;
+  }
+  
+  .micStatus {
+    bottom: -22px;
+  }
+  
+  .statusText {
+    font-size: 9px;
+    padding: 1px 4px;
+  }
+  
+  .liveTranscript {
+    padding: 6px 8px;
+    max-width: 150px;
+    margin-top: 8px;
+  }
+  
+  .liveTranscript p {
+    font-size: 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .microphone {
+    width: 45px;
+    height: 45px;
+  }
+  
+  .micIcon {
+    font-size: 14px;
+  }
+  
+  .videoCallMicrophone {
+    width: 40px;
+    height: 40px;
+  }
+  
+  .videoCallMicrophone .micIcon {
+    font-size: 12px;
+  }
+  
+  .micStatus {
+    bottom: -20px;
+  }
+  
+  .statusText {
+    font-size: 8px;
+    padding: 1px 3px;
+  }
+  
+  .listeningIndicator span {
+    width: 1.5px;
+  }
+  
+  .liveTranscript {
+    padding: 4px 6px;
+    max-width: 120px;
+    margin-top: 6px;
+  }
+  
+  .liveTranscript p {
+    font-size: 9px;
+  }
+}

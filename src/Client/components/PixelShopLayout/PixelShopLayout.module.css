@@ -1,0 +1,147 @@
+.gameShop {
+  width: 100vw;
+  height: 100vh;
+  max-width: 56.25vh; /* 9:16 aspect ratio */
+  margin: 0 auto;
+  background: 
+    linear-gradient(180deg, 
+      #87CEEB 0%, 
+      #87CEEB 30%, 
+      #90EE90 30%, 
+      #90EE90 100%);
+  position: relative;
+  overflow: hidden;
+  font-family: 'Courier New', monospace;
+  image-rendering: pixelated;
+  image-rendering: -moz-crisp-edges;
+  image-rendering: crisp-edges;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+}
+
+/* Shop Floor */
+.shopFloor {
+  position: relative;
+  width: 100%;
+  height: calc(100vh - 76px);
+  background: 
+    radial-gradient(circle at 50% 80%, rgba(139, 69, 19, 0.3) 0%, transparent 70%),
+    repeating-linear-gradient(
+      90deg,
+      #654321,
+      #654321 8px,
+      #8B4513 8px,
+      #8B4513 16px
+    );
+  background-size: 100% 100%, 16px 16px;
+  overflow: hidden;
+}
+
+.shopFloor::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: 
+    repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 15px,
+      rgba(0, 0, 0, 0.1) 15px,
+      rgba(0, 0, 0, 0.1) 16px
+    );
+  pointer-events: none;
+}
+
+/* NPCs */
+.shopkeeper {
+  position: absolute;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.shopkeeper:hover {
+  transform: translateX(-50%) scale(1.1);
+}
+
+.npcSprite {
+  font-size: 48px;
+  filter: drop-shadow(2px 2px 0 rgba(0, 0, 0, 0.3));
+  animation: npcBob 2s ease-in-out infinite;
+}
+
+.shopkeeperImage {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  object-fit: cover;
+  filter: drop-shadow(2px 2px 0 rgba(0, 0, 0, 0.3));
+}
+
+@keyframes npcBob {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-2px); }
+}
+
+.npcName {
+  background: rgba(0, 0, 0, 0.8);
+  color: #00FF00;
+  padding: 4px 8px;
+  border-radius: 2px;
+  font-size: 12px;
+  font-weight: bold;
+  border: 1px solid #00AA00;
+  white-space: nowrap;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .gameShop {
+    box-shadow: none;
+    max-width: 100vw;
+  }
+  
+  .shopFloor {
+    height: calc(100vh - 66px);
+  }
+  
+  .npcSprite {
+    font-size: 40px;
+  }
+  
+  .shopkeeperImage {
+    width: 64px;
+    height: 64px;
+  }
+  
+  .npcName {
+    font-size: 10px;
+    padding: 3px 6px;
+  }
+}
+
+@media (max-width: 480px) {
+  .shopFloor {
+    height: calc(100vh - 57px);
+  }
+  
+  .npcSprite {
+    font-size: 32px;
+  }
+  
+  .shopkeeperImage {
+    width: 48px;
+    height: 48px;
+  }
+  
+  .npcName {
+    font-size: 9px;
+    padding: 2px 4px;
+  }
+} 

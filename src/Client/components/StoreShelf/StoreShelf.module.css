@@ -1,0 +1,155 @@
+.shelfContainer {
+  margin-bottom: 2rem;
+  position: relative;
+}
+
+.shelfHeader {
+  padding: 0 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.shelfTitle {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: #2c2c2c;
+  margin: 0;
+  text-align: left;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  background: linear-gradient(45deg, #FFD700, #FFA500);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.shelfBoard {
+  height: 8px;
+  width: 100%;
+  border-radius: 4px;
+  position: relative;
+  box-shadow: 
+    0 2px 4px rgba(0, 0, 0, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3);
+  background: #8B4513;
+  margin-bottom: 0.5rem;
+}
+
+.shelfBoard::before {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(to bottom, 
+    rgba(255, 255, 255, 0.4) 0%, 
+    rgba(255, 255, 255, 0.1) 50%, 
+    transparent 100%);
+  border-radius: 4px 4px 0 0;
+}
+
+.shelfBoard::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  right: 0;
+  height: 6px;
+  background: linear-gradient(to bottom, 
+    rgba(0, 0, 0, 0.3) 0%, 
+    rgba(0, 0, 0, 0.1) 70%, 
+    transparent 100%);
+  border-radius: 0 0 2px 2px;
+}
+
+.shelfEdge {
+  position: absolute;
+  bottom: -3px;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(to right, 
+    transparent 0%, 
+    rgba(139, 69, 19, 0.6) 5%, 
+    rgba(139, 69, 19, 0.8) 50%, 
+    rgba(139, 69, 19, 0.6) 95%, 
+    transparent 100%);
+}
+
+.productsArea {
+  padding: 0.5rem 0;
+  background: linear-gradient(to bottom, 
+    rgba(0, 0, 0, 0.02) 0%, 
+    transparent 20%);
+}
+
+.emptyShelf {
+  height: 120px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, 
+    rgba(240, 240, 240, 0.3), 
+    rgba(220, 220, 220, 0.3));
+  border: 2px dashed #ccc;
+  border-radius: 8px;
+  margin: 0 1rem;
+}
+
+.emptyShelf p {
+  color: #888;
+  font-style: italic;
+  margin: 0;
+}
+
+/* Virtual Store Lighting Effects */
+@keyframes shelfGlow {
+  0%, 100% { 
+    box-shadow: 
+      0 2px 4px rgba(0, 0, 0, 0.2),
+      inset 0 1px 0 rgba(255, 255, 255, 0.3);
+  }
+  50% { 
+    box-shadow: 
+      0 2px 4px rgba(0, 0, 0, 0.2),
+      inset 0 1px 0 rgba(255, 255, 255, 0.5),
+      0 0 8px rgba(255, 215, 0, 0.3);
+  }
+}
+
+.shelfContainer:hover .shelfBoard {
+  animation: shelfGlow 2s ease-in-out infinite;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .shelfContainer {
+    margin-bottom: 1.5rem;
+  }
+
+  .shelfTitle {
+    font-size: 1.1rem;
+  }
+
+  .shelfBoard {
+    height: 6px;
+  }
+
+  .productsArea {
+    padding: 0.25rem 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .shelfContainer {
+    margin-bottom: 1rem;
+  }
+
+  .shelfTitle {
+    font-size: 1rem;
+  }
+
+  .shelfBoard {
+    height: 5px;
+  }
+} 
