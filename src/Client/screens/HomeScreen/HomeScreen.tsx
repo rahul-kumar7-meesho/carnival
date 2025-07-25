@@ -2,6 +2,9 @@ import React from "react";
 import Classes from "./HomeScreen.module.css";
 import { useNavigate } from "react-router-dom";
 import gameParlourImg from "../../../assets/images/game_parlour.png";
+import westernImg from "../../../assets/images/western.png";
+import ethinicImg from "../../../assets/images/ethinic.png";
+import homeDecorImg from "../../../assets/images/home_decor.png";
 import billBoardImg from "../../../assets/images/billBoard.png";
 import treeImg from "../../../assets/images/tree.png";
 import bushImg from "../../../assets/images/bush_main.png";
@@ -113,8 +116,12 @@ const HomeScreen = () => {
           <img src={gameParlourImg} alt="game Parlour 🎳" onClick={() => navigate("/game-parlour")} style={{height: '150px', width: 'auto'}} />
         </div>
         <div className={Classes.stallArea}>
-          <h1 onClick={() => navigate("/western-store")}> western wear</h1>
-          <h1 onClick={() => navigate("/ethinic-store")}> Ethinic wear</h1>
+          <div className={Classes.westernStore}>
+            <img src={westernImg} alt="Western Store" onClick={() => navigate("/western-store")} style={{height: '150px', width: 'auto'}} />
+          </div>
+          <div className={Classes.ethinicStore}>
+            <img src={ethinicImg} alt="Ethinic Store" onClick={() => navigate("/ethinic-store")} style={{height: '150px', width: 'auto'}} />
+          </div>
         </div>
       </div>
       <div className={Classes.flex}>
@@ -122,7 +129,7 @@ const HomeScreen = () => {
           <img src={billBoardImg} alt="Billboard" style={{transform: 'scale(0.25) translate(-15px, -600px)'}} />
         </div>
         <div className={Classes.homeDecor}>
-          <h1 onClick={() => navigate("/home-decor")}> Home Decor 🛌</h1>
+          <img src={homeDecorImg} alt="Home Decor Store" onClick={() => navigate("/home-decor")} style={{height: '150px', width: 'auto'}} />
         </div>
         <MetaScreen />
       </div>

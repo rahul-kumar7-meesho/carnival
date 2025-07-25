@@ -24,6 +24,7 @@ const AIInteraction = () => {
   const videoRef = useRef<HTMLVideoElement>(null);
   const webcamRef = useRef<Webcam>(null);
   const animationRef = useRef<number>(0);
+  const hasSpokenRef = useRef<boolean>(false);
 
   // Initialize Professional AI Avatar
   useEffect(() => {
@@ -41,6 +42,15 @@ const AIInteraction = () => {
   };
 
   const initializeProfessionalAvatar = async () => {
+    const sendGreeting = () => {
+      if (!hasSpokenRef.current) {
+        hasSpokenRef.current = true;
+        setTimeout(() => {
+          speakMessage("Hello There! what can i help you find today?");
+        }, 2000);
+      }
+    };
+
     try {
       setConnectionStatus("connecting");
       
@@ -53,18 +63,15 @@ const AIInteraction = () => {
       setIsCallActive(true);
       
       // Send initial greeting
-      setTimeout(() => {
-        speakMessage("Hello There!  what can i help you find today?");
-      }, 2000);
+      sendGreeting();
 
     } catch (error) {
       console.error('Failed to initialize AI Avatar:', error);
       setConnectionStatus("connected");
       setIsCallActive(true);
       
-      setTimeout(() => {
-        speakMessage("Hello! I'm Meera, your AI assistant. How can I help you today?");
-      }, 1000);
+      // Send greeting only if not already sent
+      sendGreeting();
     }
   };
 
@@ -487,7 +494,7 @@ const AIInteraction = () => {
                 <span></span>
                 <span></span>
               </div>
-              <span>AI Speaking...</span>
+              <span>Meera is Speaking...</span>
             </div>
           )}
         </div>
