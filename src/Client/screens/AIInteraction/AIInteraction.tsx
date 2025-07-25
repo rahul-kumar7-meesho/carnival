@@ -54,7 +54,7 @@ const AIInteraction = () => {
       
       // Send initial greeting
       setTimeout(() => {
-        speakMessage("Hello! I'm Meera, your AI assistant. How can I help you today?");
+        speakMessage("Hello There!  what can i help you find today?");
       }, 2000);
 
     } catch (error) {
@@ -590,7 +590,11 @@ const AIInteraction = () => {
           </div>
         </div> */}
         <div className={styles.productsContainer}>
-            <ProductCarousel products={products} />
+            {products.length? <ProductCarousel products={products} /> :(
+                <div className={styles.emptyState}>
+                    <p>Ask Meera to Show you some products</p>
+                </div>
+            )}
         </div>
       </div>
     </div>
