@@ -4,6 +4,9 @@ import PixelShopLayout from "../../../components/PixelShopLayout/PixelShopLayout
 
 const EthinicStore = () => {
   const navigate = useNavigate();
+  const shopID =1;
+  
+
   const pixelShelves = [
     {
       title: "Sarees",
@@ -39,7 +42,8 @@ const EthinicStore = () => {
       shelves={pixelShelves}
       shopkeeperName="Meera"
       coins={1250}
-      onShopkeeperClick={() => navigate("/ai-assistant")}
+      shopID={shopID}
+      onShopkeeperClick={(prompt: string) => navigate("/ai-assistant", { state: { prompt } })}
     />
   );
 };

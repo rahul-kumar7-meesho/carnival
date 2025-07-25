@@ -4,6 +4,7 @@ import PixelShopLayout from "../../../components/PixelShopLayout/PixelShopLayout
 
 const HomeDecor = () => {
   const navigate = useNavigate();
+  const shopID =3;
   const homeDecorShelves = [
     {
       title: "Furniture",
@@ -46,9 +47,10 @@ const HomeDecor = () => {
       shopIcon="🏠"
       shelves={homeDecorShelves}
       shopkeeperName="Meera"
+      shopID={shopID}
       backgroundGradient={homeDecorBackground}
       coins={2100}
-      onShopkeeperClick={() => navigate("/ai-assistant")}
+      onShopkeeperClick={(prompt: string) => navigate("/ai-assistant", { state: { prompt } })}
     />
   );
 };

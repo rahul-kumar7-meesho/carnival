@@ -4,6 +4,7 @@ import PixelShopLayout from "../../../components/PixelShopLayout/PixelShopLayout
 
 const WesternStore = () => {
   const navigate = useNavigate();
+  const shopID =2;
   const westernShelves = [
     {
       title: "Jeans",
@@ -45,10 +46,11 @@ const WesternStore = () => {
       shopTitle="WESTERN STORE"
       shopIcon="🤠"
       shelves={westernShelves}
+      shopID={shopID}
       shopkeeperName="Meera"
       backgroundGradient={westernBackground}
       coins={1850}
-      onShopkeeperClick={() => navigate("/ai-assistant")}
+      onShopkeeperClick={(prompt: string) => navigate("/ai-assistant", { state: { prompt } })}
     />
   );
 };

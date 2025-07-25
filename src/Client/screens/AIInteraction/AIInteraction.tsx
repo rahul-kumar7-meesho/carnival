@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import Webcam from "react-webcam";
+import { useLocation } from "react-router-dom";
 import { Video, VideoOff, Monitor, PhoneOff } from "lucide-react";
 import AudioDecoder from "../../components/AudioDecoder/AudioDecoder.component";
 import styles from "./AIInteraction.module.css";
@@ -13,18 +14,21 @@ interface ConversationMessage {
 }
 
 const AIInteraction = () => {
+  const location = useLocation();
   const [isCallActive, setIsCallActive] = useState(false);
   const [connectionStatus, setConnectionStatus] = useState("connecting");
   const [isSpeaking, setIsSpeaking] = useState(false);
   const [isVideoOff, setIsVideoOff] = useState(false);
   const [isScreenSharing, setIsScreenSharing] = useState(false);
   const [conversationHistory, setConversationHistory] = useState<ConversationMessage[]>([]);
+  const [userTranscriptHistory, setUserTranscript] = useState<string[]>([]);
   const [products, setProducts] = useState<any[]>([]);
   
   const videoRef = useRef<HTMLVideoElement>(null);
   const webcamRef = useRef<Webcam>(null);
   const animationRef = useRef<number>(0);
   const hasSpokenRef = useRef<boolean>(false);
+  const hasAddedInitialPromptRef = useRef<boolean>(false);
 
   // Initialize Professional AI Avatar
   useEffect(() => {
@@ -34,6 +38,18 @@ const AIInteraction = () => {
     };
   }, []);
 
+  useEffect(() => {
+    console.log(userTranscriptHistory);
+  }, [userTranscriptHistory]);
+
+  // Add prompt from navigation state to userTranscriptHistory on mount
+  useEffect(() => {
+    const prompt = location.state?.prompt;
+    if (prompt && !hasAddedInitialPromptRef.current) {
+      hasAddedInitialPromptRef.current = true;
+      setUserTranscript(prev => [...prev, prompt]);
+    }
+  }, []); // Empty dependency array to run only once on mount
 
   const handleProducts = () => {
     getRequest("/products").then((res) => {
@@ -376,10 +392,10 @@ const AIInteraction = () => {
     }
   };
 
-  const handleUserTranscript = (transcript: string) => {
-    console.log('User said:', transcript);
-    // Don't show live transcription
-  };
+//   const handleUserTranscript = (transcript: string) => {
+//     console.log('User said:', transcript);
+//     // Don't show live transcription
+//   };
 
   const handleFinalTranscript = (finalText: string) => {
     if (finalText.trim()) {
@@ -390,7 +406,7 @@ const AIInteraction = () => {
         text: finalText,
         timestamp: Date.now()
       };
-      
+      setUserTranscript(prev => [...prev, finalText]);
       setConversationHistory(prev => [...prev, userMessage]);
 
       // Generate contextual AI response
@@ -544,7 +560,7 @@ const AIInteraction = () => {
               <AudioDecoder 
                 videoCallMode={true}
                 disabled={!isCallActive}
-                onTranscriptChange={handleUserTranscript}
+                // onTranscriptChange={handleUserTranscript}
                 onFinalTranscript={handleFinalTranscript}
               />
             </div>

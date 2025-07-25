@@ -68,7 +68,7 @@ const AudioDecoder: React.FC<AudioDecoderProps> = ({
       timeoutId.current = null;
       // Console log the final decoded text when mic is disabled
       if (transcript) {
-        console.log("Final decoded text:", transcript);
+        // console.log("Final decoded text:", transcript);
         // Call onFinalTranscript callback
         if (onFinalTranscript) {
           onFinalTranscript(transcript);
