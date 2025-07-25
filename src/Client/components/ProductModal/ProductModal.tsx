@@ -35,10 +35,10 @@ const ProductModal: React.FC<ProductModalProps> = ({ isOpen, onClose, product })
           </div>
           <div className={styles.productDetails}>
             <h2>{product.product_name}</h2>
-            <p className={styles.price}>${product.product_price}</p>
+            <p className={styles.price}>₹{product.price}</p>
             <div className={styles.actionButtons}>
-              <button className={styles.addToCartBtn}>Add to Cart</button>
-              <button className={styles.buyNowBtn}>Buy Now</button>
+              <button className={styles.addToCartBtn}>Try Now</button>
+              <button className={styles.buyNowBtn}>Add to Cart</button>
             </div>
           </div>
         </div>

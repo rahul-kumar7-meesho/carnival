@@ -3,7 +3,8 @@ import Webcam from "react-webcam";
 import { Video, VideoOff, Monitor, PhoneOff } from "lucide-react";
 import AudioDecoder from "../../components/AudioDecoder/AudioDecoder.component";
 import styles from "./AIInteraction.module.css";
-
+import ProductCarousel from "../../components/ProductCarousel/ProductCarousel";
+import { getRequest } from "../../API/request";
 interface ConversationMessage {
   id: string;
   type: 'user' | 'ai';
@@ -18,6 +19,7 @@ const AIInteraction = () => {
   const [isVideoOff, setIsVideoOff] = useState(false);
   const [isScreenSharing, setIsScreenSharing] = useState(false);
   const [conversationHistory, setConversationHistory] = useState<ConversationMessage[]>([]);
+  const [products, setProducts] = useState<any[]>([]);
   
   const videoRef = useRef<HTMLVideoElement>(null);
   const webcamRef = useRef<Webcam>(null);
@@ -30,6 +32,13 @@ const AIInteraction = () => {
       cleanup();
     };
   }, []);
+
+
+  const handleProducts = () => {
+    getRequest("/products").then((res) => {
+      setProducts(res.products);
+    });
+  };
 
   const initializeProfessionalAvatar = async () => {
     try {
@@ -392,6 +401,14 @@ const AIInteraction = () => {
       ];
       
       let selectedResponse = responses[Math.floor(Math.random() * responses.length)];
+
+      const keywords = ["buy","by","shit","shirt","find","show","pant","dress","shoes","bag","watch","jewelry","perfume","cosmetics","makeup","hair","nail","skin","body","fragrance","skincare","haircare","nailcare","skincare","haircare","nailcare","skincare","haircare","nailcare","skincare","haircare","nailcare","skincare","haircare","nailcare","skincare","haircare","nailcare","skincare","haircare","nailcare","skincare","haircare","nailcare","skincare","haircare","nailcare","skincare","haircare","nailcare","skincare","haircare","nailcare","skincare","haircare","nailcare","skincare","haircare","nailcare","skincare","haircare","nailcare","skincare","haircare","nailcare","skincare","haircare","nailcare","skincare","haircare","nailcare","skincare","haircare","nailcare","skincare","haircare","nailcare","skincare","haircare","nailcare","skincare","haircare","nailcare","skincare","haircare","nailcare","skincare","haircare","nailcare","skincare","haircare","nailcare","skincare","haircare","nailcare","skincare","haircare","nailcare","skincare","haircare","nailcare","skincare","haircare","nailcare","skincare","haircare","nailcare","skincare","haircare","nailcare","skincare","haircare","nailcare","skincare","haircare","nailcare","skincare","haircare","nailcare","skincare","haircare","nailcare","skincare","haircare","nailcare","skincare","haircare","nailcare","skincare","haircare","nailcare","skincare","haircare","nailcare","skincare","haircare","nailcare","skincare","haircare","nailcare","skincare","haircare","nailcare","skincare","haircare","nailcare","skincare","haircare","nailcare","skincare","haircare","nailcare","skincare","haircare","nailcare","skincare","haircare","nailcare","skincare","haircare","nailcare","skincare","haircare","nailcare","skincare","haircare","nailcare","skincare","haircare","nailcare","skincare","haircare","nailcare","skincare","haircare","nailcare","skincare","haircare","nailcare","skincare","haircare","nailcare","skincare","haircare","nailcare","skincare","haircare","nailcare","skincare","haircare","nailcare","skincare","haircare","nailcare","skincare","haircare","nailcare","skincare","haircare","nailcare","skincare","haircare","nailcare","skincare","haircare","nailcare","skincare","haircare","nailcare","skincare","haircare","nailcare","skincare","haircare","nailcare","skincare","haircare","nailcare","skincare","haircare","nailcare","skincare","haircare","nailcare","skincare","haircare","nailcare","skincare","haircare","nailcare","skincare","haircare","nailcare","skincare","haircare","nailcare","skincare","haircare","nailcare","skincare","haircare","nailcare","skincare","haircare","nailcare","skincare","haircare","nailcare","skincare","haircare","nailcare","skincare","haircare","nailcare","skincare","haircare","nailcare","skincare","haircare","nailcare","skincare","haircare","nailcare","skincare","haircare","nailcare","skincare","haircare","nailcare","skincare","haircare","nailcare","skincare","haircare","nailcare","skincare","haircare","nailcare","skincare","haircare","nailcare","skincare","haircare","nailcare","skincare","haircare","nailcare","skincare","haircare","nailcare","skincare","haircare","nailcare","skincare","haircare","nailcare","skincare","haircare","nailcare","skincare","haircare","nailcare","skincare","haircare","nailcare","skincare","haircare","nailcare","skincare","haircare","nailcare","skincare","haircare","nailcare","skincare","haircare","nailcare","skincare","haircare","nailcare","skincare","haircare","nailcare","skincare","haircare","nailcare","skincare","haircare","nailcare","skincare","haircare","nailcare","skincare","haircare","nailcare","skincare","haircare","nailcare","skincare","haircare","nailcare","skincare","haircare","nailcare","skincare","haircare","nailcare","skincare","haircare","nailcare","skincare","haircare","nailcare","skincare","haircare","nailcare","skincare","haircare","nailcare","skincare","haircare","nailcare","skincare","haircare","nailcare","skincare","haircare","nailcare","skincare","haircare","nailcare","skincare","haircare","nailcare","skincare","haircare","nailcare","skincare","haircare","nailcare","skincare","haircare","nailcare","skincare","haircare","nailcare","skincare","haircare","nailcare","skincare","haircare","nailcare","skincare","haircare","nailcare","skincare","haircare","nailcare","skincare","haircare","nailcare","skincare","haircare","nailcare","skincare","haircare","nailcare","skincare","haircare","nailcare","skincare","haircare","nailcare","skincare","haircare","nailcare","skincare","haircare","nailcare","skincare","haircare","nailcare","skincare","haircare","nailcare","skincare","haircare","nailcare","skincare","haircare","nailcare","skincare","haircare","nailcare","skincare","haircare","nailcare","skincare","haircare","nailcare","skincare","haircare","nailcare","skincare","haircare","nailcare","skincare","haircare","nailcare","skincare","haircare","nailcare","skincare","haircare","nailcare","skincare","haircare","nailcare","skincare","haircare","nailcare","skincare","haircare","nailcare","skincare","haircare","nailcare","skincare","haircare","nailcare","skincare","haircare","nailcare","skincare","haircare","nailcare","skincare","haircare","nailcare","skincare","haircare","nailcare","skincare","haircare","nailcare","skincare","haircare","nailcare","skincare","haircare","nailcare","skincare","haircare","nailcare","skincare","haircare","nailcare","skincare","haircare","nailcare","skincare","haircare","nailcare","skincare","haircare","nailcare","skincare","haircare","nailcare","skincare","haircare","nailcare","skincare","haircare","nailcare","skincare","haircare","nailcare","skincare","haircare","nailcare","skincare","haircare","nailcare","skincare","haircare","nailcare","skincare","haircare","nailcare","skincare","haircare","nailcare","skincare","haircare","nailcare","skincare","haircare","nailcare","skincare","haircare","nailcare","skincare","haircare","nailcare","skincare","haircare","nailcare","skincare","haircare","nailcare","skincare","haircare","nailcare","skincare","haircare","nailcare","skincare","haircare","nailcare","skincare","haircare","nailcare","skincare","haircare","nailcare","skincare","haircare","nailcare","skincare","haircare","nailcare","skincare","haircare","nailcare","skincare","haircare","nailcare","skincare","haircare","nailcare","skincare","haircare","nailcare","skincare","haircare","nailcare","skincare","haircare","nailcare","skincare","haircare","nailcare","skincare","haircare","nailcare","skincare","haircare","nailcare","skincare","haircare","nailcare","skincare","haircare","nailcare","skincare","haircare","nailcare","skincare","haircare","nailcare","skincare","haircare","nailcare","skincare","haircare","nailcare","skincare","haircare","nailcare","skincare","haircare","nailcare","skincare","haircare","nailcare","skincare","haircare","nailcare","skincare","haircare","nailcare","skincare","haircare","nailcare","skincare","haircare","nailcare","skincare","haircare","nailcare","skincare","haircare","nailcare","skincare","haircare","nailcare","skincare","haircare","nailcare","skincare","haircare","nailcare","skincare","haircare","nail"];
+      const hasKeywords = keywords.some((keyword) => finalText.toLowerCase().includes(keyword));
+
+      if(hasKeywords){
+        selectedResponse = "Got it! I'll show you some products that i think will look good on you";
+        handleProducts();
+      }else{
       
       // Contextual responses
       if (finalText.toLowerCase().includes('help')) {
@@ -401,7 +418,7 @@ const AIInteraction = () => {
       } else if (finalText.toLowerCase().includes('?')) {
         selectedResponse = "That's an excellent question! Let me give you a detailed and helpful answer.";
       }
-      
+    }
       setTimeout(() => {
         speakMessage(selectedResponse);
       }, 1000);
@@ -539,7 +556,7 @@ const AIInteraction = () => {
 
       {/* Bottom Half - Conversation History */}
       <div className={styles.chatSection}>
-        <div className={styles.conversationPanel}>
+        {/* <div className={styles.conversationPanel}>
           <div className={styles.conversationHeader}>
             <h3>💬 Conversation History</h3>
             <span className={styles.messageCount}>
@@ -571,6 +588,9 @@ const AIInteraction = () => {
               ))
             )}
           </div>
+        </div> */}
+        <div className={styles.productsContainer}>
+            <ProductCarousel products={products} />
         </div>
       </div>
     </div>

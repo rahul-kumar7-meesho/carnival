@@ -582,3 +582,12 @@
     border: 3px solid rgba(255, 255, 255, 0.8);
   }
 } 
+
+
+.productsContainer{
+  background-color: #fff;
+  width: 100%;
+  height: 100%;
+  padding: 2rem;
+
+}
